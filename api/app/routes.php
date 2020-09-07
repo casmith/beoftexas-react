@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use App\Application\Actions\Article\ListArticlesAction;
+use App\Application\Actions\Article\ViewArticleAction;
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -22,5 +23,6 @@ return function (App $app) {
 
     $app->group('/articles', function (Group $group) {
         $group->get('', ListArticlesAction::class);
+        $group->get('/{id}', ViewArticleAction::class);
     });
 };
