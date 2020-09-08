@@ -2,12 +2,12 @@ import React from 'react';
 import { Navbar, Nav, NavDropdown } from "react-bootstrap"
 
 const menu = {
-  'Flexibile Spendingsdfafsd': [
-    {'Flexibile Spending': '/blah'},
-    {"TASC&trade; Debit Card": "mbicard.php"},
-      {"Direct Deposit": "ddreim.php"},
+  'Flexibile Spending': [
+    {'Flexibile Spending': '/article/1'},
+    {"TASC&trade; Debit Card": "/article/4"},
+      {"Direct Deposit": "/article/5"},
       {"Flex Worksheet": "flexreim.php"},
-      {"Check Balance": "checkbal.php"},
+      {"Check Balance": "/article/6"},
       {"Request Quote": "request_quote.php"},
       {"Q&As": null},
       {"Cafeteria Plan": "questions.php?category=cafeteria"},
@@ -15,10 +15,10 @@ const menu = {
       {"DCRP": "questions.php?category=dcrp"},
       {"HCRP": "questions.php?category=hcrp&amp;image=stetho.gif"}
   ], 
-  '403(b) Admin': {},
-  'COBRA Admin': {},
-  'Forms': {},
-  'Billing': []
+  '403(b) Admin': '/403badmin',
+  'COBRA Admin': '/article/7',
+  'Forms': '/forms',
+  'Billing': '/billing'
 };
 
 const renderHtml = (rawHTML) => React.createElement("span", { dangerouslySetInnerHTML: { __html: rawHTML } });
@@ -43,14 +43,15 @@ export default function Navigation() {
           <Nav className="mr-auto">
             {Object.keys(menu).map(key => {
               const submenu = menu[key];
-              if (submenu && submenu.length) {
+              
+              if (Array.isArray(submenu) && submenu.length) {
                 return (
                   <NavDropdown title="Flexible Spending" id="basic-nav-dropdown">
                   {renderSubmenu(submenu)}
                   </NavDropdown>
                   )
-              } else {
-                return (<Nav.Link href="#home">{key}</Nav.Link>)
+              } else if (submenu.length) {
+                return (<Nav.Link href={submenu}>{key}</Nav.Link>)
               }
             })}
           </Nav>
