@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
+import Article from './Article'
 import Navigation from './Navigation'
 import { Container } from 'react-bootstrap'
 import {
@@ -19,13 +20,8 @@ function App() {
         <Navigation />
         <Container class="container">
           <Switch>
-            <Route path="/about">
-              About
-              {/* <About /> */}
-            </Route>
-            <Route path="/users">
-              Users
-              {/* <Users /> */}
+            <Route path="/article/:id">
+              <Article />
             </Route>
             <Route path="/">
               Home
