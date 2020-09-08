@@ -10,9 +10,6 @@ function Article() {
   const [article, setArticle] = useState([]);
   const { id } = useParams();
 
-  // Note: the empty deps array [] means
-  // this useEffect will run once
-  // similar to componentDidMount()
   useEffect(() => {
     fetch(`http://localhost:8080/articles/${id}`)
       .then(res => res.json())
@@ -21,9 +18,6 @@ function Article() {
           setIsLoaded(true);
           setArticle(result.data);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           setIsLoaded(true);
           setError(error);

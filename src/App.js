@@ -7,18 +7,17 @@ import { Container } from 'react-bootstrap'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import './App.css'
 
 function App() {
   return (
     <Router>
-      <div class="wrapper">
+      <div className="wrapper">
         <Header />
         <Navigation />
-        <Container class="container">
+        <Container className="container">
           <Switch>
             <Route path="/article/:id">
               <Article />

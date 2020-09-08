@@ -3,6 +3,6 @@ import image from './header-flipped.gif'
 
 export default function Header() {
     return (
-        <div class="header"><img src={image} alt="Logo" /></div>
+        <div className="header"><img src={image} alt="Logo" /></div>
     );
 }

@@ -26,10 +26,10 @@ const renderHtml = (rawHTML) => React.createElement("span", { dangerouslySetInne
 const renderSubmenu = (submenu) => {
   return (
     <>
-      {submenu.map(obj => {
+      {submenu.map((obj, i) => {
         const label = Object.keys(obj)[0],
           href = obj[label];
-        return (<NavDropdown.Item href={href}>{renderHtml(label)}</NavDropdown.Item>)
+        return (<NavDropdown.Item key={i} href={href}>{renderHtml(label)}</NavDropdown.Item>)
       })}
     </>
   )
@@ -41,17 +41,18 @@ export default function Navigation() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            {Object.keys(menu).map(key => {
+            {Object.keys(menu).map((key, i) => {
               const submenu = menu[key];
-              
               if (Array.isArray(submenu) && submenu.length) {
                 return (
-                  <NavDropdown title="Flexible Spending" id="basic-nav-dropdown">
+                  <NavDropdown key={i} title="Flexible Spending">
                   {renderSubmenu(submenu)}
                   </NavDropdown>
                   )
               } else if (submenu.length) {
-                return (<Nav.Link href={submenu}>{key}</Nav.Link>)
+                return (<Nav.Link key={i} href={submenu}>{key}</Nav.Link>)
+              } else {
+                return null;
               }
             })}
           </Nav>
