@@ -31,7 +31,9 @@ class StrapiMenuRepository implements MenuRepository {
     }
 
     public function toMenu($obj) {
-        return new Menu($obj["id"], $obj["title"], $obj["title"], $obj["parent"] ? $obj["parent"]["id"] : null);
+        $link = $obj["link"];
+        if (!$link) $link = "";
+        return new Menu($obj["id"], $obj["title"], $link, $obj["parent"] ? $obj["parent"]["id"] : null);
     }
 }
 ?>
