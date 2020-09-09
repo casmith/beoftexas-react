@@ -18,7 +18,7 @@ class StrapiArticleRepository implements ArticleRepository
             'base_url' => 'http://localhost:1337',
             'user_agent' => "beoftexas/0.1"
         ]);
-
+        
         $this->api->register_decoder('json', function($data){
             return json_decode($data, TRUE);
         });
